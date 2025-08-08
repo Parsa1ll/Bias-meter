@@ -179,26 +179,60 @@
   border-top-color: rgba(0, 0, 0, 0.9);
 }
 
-/* Add this after the existing styles */
+/* Container and centering fixes */
 .container {
-  max-width: 1400px;
-  margin: 0 auto;
+  width: 100%;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
 }
 
-/* For very large screens, add additional constraints */
-@media (min-width: 1600px) {
+@media (min-width: 640px) {
   .container {
-    max-width: 1200px;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
   }
 }
 
-/* Ensure proper centering for all main content sections */
+@media (min-width: 1024px) {
+  .container {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+}
+
+/* Remove the section centering that might be causing issues */
 section {
   width: 100%;
+}
+
+/* Ensure body and html take full width */
+html, body {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+/* Fix any potential flexbox centering issues */
+.flex {
   display: flex;
+}
+
+.justify-center {
   justify-content: center;
 }
 
-section > .container {
-  width: 100%;
+.items-center {
+  align-items: center;
+}
+
+.mx-auto {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.text-center {
+  text-align: center;
 }

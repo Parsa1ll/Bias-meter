@@ -376,60 +376,6 @@ export default function AnalyticsPage() {
                     </ResponsiveContainer>
                   </ChartContainer>
                 </div>
-
-                {/* Right Side Tooltip Panel */}
-                <div className="mt-6 lg:mt-0 lg:w-80 lg:flex-shrink-0">
-                  {hoveredData ? (
-                    <div className="glass-effect border border-white/20 rounded-xl p-4 shadow-2xl backdrop-blur-md lg:sticky lg:top-4">
-                      <p className="text-white font-semibold mb-3 text-center">{hoveredData.date}</p>
-                      <div className="space-y-2">
-                        {hoveredData.data.map((entry: any, index: number) => {
-                          const biasTypeNames = {
-                            political: "Political Bias",
-                            emotional: "Emotional Tone", 
-                            factual: "Factual Accuracy",
-                            sensational: "Sensationalism",
-                            source: "Source Quality",
-                            context: "Context Balance"
-                          };
-                          
-                          const descriptions = {
-                            political: "Measures left/right political leaning",
-                            emotional: "Analyzes emotional language intensity", 
-                            factual: "Evaluates fact-checking quality",
-                            sensational: "Detects clickbait and hyperbole",
-                            source: "Assesses source credibility",
-                            context: "Measures balanced reporting"
-                          };
-
-                          return (
-                            <div key={index} className="flex items-center gap-3 p-2 rounded-lg bg-black/20">
-                              <div 
-                                className="w-3 h-3 rounded-full" 
-                                style={{ backgroundColor: entry.color }}
-                              ></div>
-                              <div className="flex-1">
-                                <div className="text-white font-medium text-sm">
-                                  {biasTypeNames[entry.dataKey as keyof typeof biasTypeNames]}
-                                </div>
-                                <div className="text-gray-300 text-xs">
-                                  {descriptions[entry.dataKey as keyof typeof descriptions]}
-                                </div>
-                                <div className="text-white font-bold">
-                                  {entry.value}%
-                                </div>
-                              </div>
-                            </div>
-                          );
-                        })}
-                      </div>
-                    </div>
-                  ) : (
-                    <div className="glass-effect border border-white/20 rounded-xl p-4 shadow-2xl backdrop-blur-md lg:sticky lg:top-4 opacity-50">
-                      <p className="text-gray-400 text-center">Hover over the chart to see detailed bias information</p>
-                    </div>
-                  )}
-                </div>
               </div>
             </CardContent>
           </Card>

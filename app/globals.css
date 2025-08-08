@@ -178,3 +178,27 @@
   border: 5px solid transparent;
   border-top-color: rgba(0, 0, 0, 0.9);
 }
+
+/* Add this after the existing styles */
+.container {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+/* For very large screens, add additional constraints */
+@media (min-width: 1600px) {
+  .container {
+    max-width: 1200px;
+  }
+}
+
+/* Ensure proper centering for all main content sections */
+section {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+section > .container {
+  width: 100%;
+}

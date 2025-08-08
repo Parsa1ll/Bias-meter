@@ -264,87 +264,117 @@ export default function AnalyticsPage() {
               <div className="lg:flex lg:gap-8">
                 {/* Chart Container */}
                 <div className="lg:flex-1 lg:min-w-0">
-                  <ResponsiveContainer width="100%" height="100%">
-                    <LineChart 
-                      data={biasEvolutionData}
-                      onMouseMove={(e) => {
-                        if (e && e.activePayload && e.activePayload.length > 0) {
-                          setHoveredData({
-                            date: e.activeLabel,
-                            data: e.activePayload
-                          });
-                          setHoveredIndex(e.activeTooltipIndex || 0);
-                        }
-                      }}
-                      onMouseLeave={() => {
-                        setHoveredData(null);
-                        setHoveredIndex(null);
-                      }}
-                    >
-                      <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" />
-                      <XAxis dataKey="date" stroke="#9ca3af" />
-                      <YAxis stroke="#9ca3af" />
-                      
-                      {/* Vertical hover line */}
-                      {hoveredIndex !== null && (
-                        <ReferenceLine 
-                          x={biasEvolutionData[hoveredIndex]?.date} 
-                          stroke="rgba(255,255,255,0.6)" 
-                          strokeWidth={2}
-                          strokeDasharray="4 4"
+                  <ChartContainer
+                    config={{
+                      political: {
+                        label: "Political Bias",
+                        color: "#ef4444",
+                      },
+                      emotional: {
+                        label: "Emotional Tone", 
+                        color: "#f97316",
+                      },
+                      factual: {
+                        label: "Factual Accuracy",
+                        color: "#22c55e",
+                      },
+                      sensational: {
+                        label: "Sensationalism",
+                        color: "#a855f7",
+                      },
+                      source: {
+                        label: "Source Quality",
+                        color: "#3b82f6",
+                      },
+                      context: {
+                        label: "Context Balance",
+                        color: "#06b6d4",
+                      },
+                    }}
+                    className="h-[500px] w-full"
+                  >
+                    <ResponsiveContainer width="100%" height="100%">
+                      <LineChart 
+                        data={biasEvolutionData}
+                        onMouseMove={(e) => {
+                          if (e && e.activePayload && e.activePayload.length > 0) {
+                            setHoveredData({
+                              date: e.activeLabel,
+                              data: e.activePayload
+                            });
+                            setHoveredIndex(e.activeTooltipIndex || 0);
+                          }
+                        }}
+                        onMouseLeave={() => {
+                          setHoveredData(null);
+                          setHoveredIndex(null);
+                        }}
+                      >
+                        <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" />
+                        <XAxis dataKey="date" stroke="#9ca3af" />
+                        <YAxis stroke="#9ca3af" />
+                        
+                        {/* Vertical hover line */}
+                        {hoveredIndex !== null && (
+                          <ReferenceLine 
+                            x={biasEvolutionData[hoveredIndex]?.date} 
+                            stroke="rgba(255,255,255,0.6)" 
+                            strokeWidth={2}
+                            strokeDasharray="4 4"
+                          />
+                        )}
+                        
+                        <Line 
+                          type="monotone" 
+                          dataKey="political" 
+                          stroke="#ef4444" 
+                          strokeWidth={3}
+                          dot={{ fill: '#ef4444', strokeWidth: 2, r: 4 }}
+                          activeDot={{ r: 8, stroke: '#ef4444', strokeWidth: 3, fill: '#ffffff' }}
                         />
-                      )}
-                      
-                      <Line 
-                        type="monotone" 
-                        dataKey="political" 
-                        stroke="#ef4444" 
-                        strokeWidth={3}
-                        dot={{ fill: '#ef4444', strokeWidth: 2, r: 4 }}
-                        activeDot={{ r: 8, stroke: '#ef4444', strokeWidth: 3, fill: '#ffffff' }}
-                      />
-                      <Line 
-                        type="monotone" 
-                        dataKey="emotional" 
-                        stroke="#f97316" 
-                        strokeWidth={3}
-                        dot={{ fill: '#f97316', strokeWidth: 2, r: 4 }}
-                        activeDot={{ r: 8, stroke: '#f97316', strokeWidth: 3, fill: '#ffffff' }}
-                      />
-                      <Line 
-                        type="monotone" 
-                        dataKey="factual" 
-                        stroke="#22c55e" 
-                        strokeWidth={3}
-                        dot={{ fill: '#22c55e', strokeWidth: 2, r: 4 }}
-                        activeDot={{ r: 8, stroke: '#22c55e', strokeWidth: 3, fill: '#ffffff' }}
-                      />
-                      <Line 
-                        type="monotone" 
-                        dataKey="sensational" 
-                        stroke="#a855f7" 
-                        strokeWidth={3}
-                        dot={{ fill: '#a855f7', strokeWidth: 2, r: 4 }}
-                        activeDot={{ r: 8, stroke: '#a855f7', strokeWidth: 3, fill: '#ffffff' }}
-                      />
-                      <Line 
-                        type="monotone" 
-                        dataKey="source" 
-                        stroke="#3b82f6" 
-                        strokeWidth={3}
-                        dot={{ fill: '#3b82f6', strokeWidth: 2, r: 4 }}
-                        activeDot={{ r: 8, stroke: '#3b82f6', strokeWidth: 3, fill: '#ffffff' }}
-                      />
-                      <Line 
-                        type="monotone" 
-                        dataKey="context" 
-                        stroke="#06b6d4" 
-                        strokeWidth={3}
-                        dot={{ fill: '#06b6d4', strokeWidth: 2, r: 4 }}
-                        activeDot={{ r: 8, stroke: '#06b6d4', strokeWidth: 3, fill: '#ffffff' }}
-                      />
-                    </LineChart>
-                  </ResponsiveContainer>
+                        <Line 
+                          type="monotone" 
+                          dataKey="emotional" 
+                          stroke="#f97316" 
+                          strokeWidth={3}
+                          dot={{ fill: '#f97316', strokeWidth: 2, r: 4 }}
+                          activeDot={{ r: 8, stroke: '#f97316', strokeWidth: 3, fill: '#ffffff' }}
+                        />
+                        <Line 
+                          type="monotone" 
+                          dataKey="factual" 
+                          stroke="#22c55e" 
+                          strokeWidth={3}
+                          dot={{ fill: '#22c55e', strokeWidth: 2, r: 4 }}
+                          activeDot={{ r: 8, stroke: '#22c55e', strokeWidth: 3, fill: '#ffffff' }}
+                        />
+                        <Line 
+                          type="monotone" 
+                          dataKey="sensational" 
+                          stroke="#a855f7" 
+                          strokeWidth={3}
+                          dot={{ fill: '#a855f7', strokeWidth: 2, r: 4 }}
+                          activeDot={{ r: 8, stroke: '#a855f7', strokeWidth: 3, fill: '#ffffff' }}
+                        />
+                        <Line 
+                          type="monotone" 
+                          dataKey="source" 
+                          stroke="#3b82f6" 
+                          strokeWidth={3}
+                          dot={{ fill: '#3b82f6', strokeWidth: 2, r: 4 }}
+                          activeDot={{ r: 8, stroke: '#3b82f6', strokeWidth: 3, fill: '#ffffff' }}
+                        />
+                        <Line 
+                          type="monotone" 
+                          dataKey="context" 
+                          stroke="#06b6d4" 
+                          strokeWidth={3}
+                          dot={{ fill: '#06b6d4', strokeWidth: 2, r: 4 }}
+                          activeDot={{ r: 8, stroke: '#06b6d4', strokeWidth: 3, fill: '#ffffff' }}
+                        />
+                      </LineChart>
+                    </ResponsiveContainer>
+                  </ChartContainer>
                 </div>
 
                 {/* Right Side Tooltip Panel */}

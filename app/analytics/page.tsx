@@ -261,9 +261,9 @@ export default function AnalyticsPage() {
               </div>
             </CardHeader>
             <CardContent>
-              <div className="flex gap-8">
-                {/* Chart Container - constrained width */}
-                <div className="flex-1 max-w-[calc(100%-350px)]">
+              <div className="lg:flex lg:gap-8">
+                {/* Chart Container */}
+                <div className="lg:flex-1 lg:min-w-0">
                   <ChartContainer
                     config={{
                       political: {
@@ -377,10 +377,10 @@ export default function AnalyticsPage() {
                   </ChartContainer>
                 </div>
 
-                {/* Right Side Tooltip Panel - fixed width */}
-                <div className="w-80 flex-shrink-0">
+                {/* Right Side Tooltip Panel */}
+                <div className="mt-6 lg:mt-0 lg:w-80 lg:flex-shrink-0">
                   {hoveredData ? (
-                    <div className="glass-effect border border-white/20 rounded-xl p-4 shadow-2xl backdrop-blur-md sticky top-4">
+                    <div className="glass-effect border border-white/20 rounded-xl p-4 shadow-2xl backdrop-blur-md lg:sticky lg:top-4">
                       <p className="text-white font-semibold mb-3 text-center">{hoveredData.date}</p>
                       <div className="space-y-2">
                         {hoveredData.data.map((entry: any, index: number) => {
@@ -425,7 +425,7 @@ export default function AnalyticsPage() {
                       </div>
                     </div>
                   ) : (
-                    <div className="glass-effect border border-white/20 rounded-xl p-4 shadow-2xl backdrop-blur-md sticky top-4 opacity-50">
+                    <div className="glass-effect border border-white/20 rounded-xl p-4 shadow-2xl backdrop-blur-md lg:sticky lg:top-4 opacity-50">
                       <p className="text-gray-400 text-center">Hover over the chart to see detailed bias information</p>
                     </div>
                   )}

@@ -179,60 +179,62 @@
   border-top-color: rgba(0, 0, 0, 0.9);
 }
 
-/* Container and centering fixes */
-.container {
-  width: 100%;
-  max-width: 1200px;
-  margin-left: auto;
-  margin-right: auto;
-  padding-left: 1rem;
-  padding-right: 1rem;
-}
-
-@media (min-width: 640px) {
+/* Force container to always center regardless of screen size */
+@layer components {
   .container {
-    padding-left: 1.5rem;
-    padding-right: 1.5rem;
+    width: 100% !important;
+    max-width: 1400px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+  }
+
+  @media (min-width: 640px) {
+    .container {
+      padding-left: 1.5rem !important;
+      padding-right: 1.5rem !important;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .container {
+      padding-left: 2rem !important;
+      padding-right: 2rem !important;
+    }
+  }
+
+  /* For ultra-wide screens, keep content centered */
+  @media (min-width: 1600px) {
+    .container {
+      max-width: 1200px !important;
+    }
   }
 }
 
-@media (min-width: 1024px) {
-  .container {
-    padding-left: 2rem;
-    padding-right: 2rem;
-  }
-}
-
-/* Remove the section centering that might be causing issues */
+/* Ensure all sections stay centered */
 section {
   width: 100%;
-}
-
-/* Ensure body and html take full width */
-html, body {
-  width: 100%;
-  margin: 0;
-  padding: 0;
-}
-
-/* Fix any potential flexbox centering issues */
-.flex {
   display: flex;
-}
-
-.justify-center {
   justify-content: center;
 }
 
-.items-center {
-  align-items: center;
+header {
+  width: 100%;
+  display: flex;
+  justify-content: center;
 }
 
+/* Override any potential conflicting styles */
 .mx-auto {
-  margin-left: auto;
-  margin-right: auto;
+  margin-left: auto !important;
+  margin-right: auto !important;
 }
 
 .text-center {
-  text-align: center;
+  text-align: center !important;
+}
+
+.justify-center {
+  justify-content: center !important;
 }

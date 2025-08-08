@@ -261,9 +261,9 @@ export default function AnalyticsPage() {
               </div>
             </CardHeader>
             <CardContent>
-              <div className="lg:flex lg:gap-8">
+              <div className="flex gap-8">
                 {/* Chart Container */}
-                <div className="lg:flex-1 lg:min-w-0">
+                <div className="flex-1">
                   <ChartContainer
                     config={{
                       political: {
@@ -291,7 +291,7 @@ export default function AnalyticsPage() {
                         color: "#06b6d4",
                       },
                     }}
-                    className="h-[500px] w-full"
+                    className="h-[500px]"
                   >
                     <ResponsiveContainer width="100%" height="100%">
                       <LineChart 
@@ -378,9 +378,9 @@ export default function AnalyticsPage() {
                 </div>
 
                 {/* Right Side Tooltip Panel */}
-                <div className="mt-6 lg:mt-0 lg:w-80 lg:flex-shrink-0">
+                <div className="w-80 flex-shrink-0">
                   {hoveredData ? (
-                    <div className="glass-effect border border-white/20 rounded-xl p-4 shadow-2xl backdrop-blur-md lg:sticky lg:top-4">
+                    <div className="glass-effect border border-white/20 rounded-xl p-4 shadow-2xl backdrop-blur-md sticky top-4">
                       <p className="text-white font-semibold mb-3 text-center">{hoveredData.date}</p>
                       <div className="space-y-2">
                         {hoveredData.data.map((entry: any, index: number) => {
@@ -425,7 +425,7 @@ export default function AnalyticsPage() {
                       </div>
                     </div>
                   ) : (
-                    <div className="glass-effect border border-white/20 rounded-xl p-4 shadow-2xl backdrop-blur-md lg:sticky lg:top-4 opacity-50">
+                    <div className="glass-effect border border-white/20 rounded-xl p-4 shadow-2xl backdrop-blur-md sticky top-4 opacity-50">
                       <p className="text-gray-400 text-center">Hover over the chart to see detailed bias information</p>
                     </div>
                   )}
